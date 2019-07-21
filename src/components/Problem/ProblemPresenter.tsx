@@ -8,6 +8,7 @@ const Container = styled.div`
   background-color: white;
   overflow: scroll;
   height: fit-content;
+  transition: 0.5s;
 `;
 const ProblemTop = styled.div`
   position: relative;

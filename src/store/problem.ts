@@ -52,6 +52,7 @@ const problem = (state: State = initialState, action: any) => {
     case getType(getData):
       //초기 데이터 불러오기
       return { problems: action.payload };
+
     case getType(getSimillarTypes):
     //유사 항목 불러오기 unitCode가 같은 것들을 찾아 가져온다.
     case getType(deleteProblem):
@@ -63,7 +64,13 @@ const problem = (state: State = initialState, action: any) => {
     case getType(addProblem):
       const { problemId, ativeProblem } = action.payload;
       //배열에서 problemId를 찾아 뒤에 ativeProblem을 추가
-      console.log(state, problemId, ativeProblem);
+      const index = state.problems.findIndex(
+        (problem) => problem.id === problemId
+      );
+      const tempArray = [...state.problems];
+      ativeProblem.id = Math.floor(Math.random() * 100000);
+      tempArray.splice(index + 1, 0, ativeProblem);
+      return { problems: tempArray };
     default:
       return state;
   }

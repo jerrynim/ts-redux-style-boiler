@@ -145,7 +145,6 @@ const App: React.FC<IProps> = ({ problems, activeProblems }) => {
               index={index}
             />
           ))}
-          {console.log(activeProblems.problems.length)}
           {activeProblems.problems.length === 0 &&
             (activeProblems.problemId !== 0 ? (
               <RightInitWrapper>
