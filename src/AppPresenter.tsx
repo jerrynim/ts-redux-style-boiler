@@ -103,12 +103,12 @@ interface Problem {
   unitName: string;
 }
 interface IProps {
-  data: Problem[] | null;
+  problems: Problem[];
   active: any;
   setActive?: React.Dispatch<any>;
 }
 
-const App: React.FC<IProps> = ({ data, active }) => {
+const App: React.FC<IProps> = ({ problems, active }) => {
   return (
     <Container>
       <Left>
@@ -116,8 +116,9 @@ const App: React.FC<IProps> = ({ data, active }) => {
           <TitleText>학습지 상세 편집</TitleText>
         </Title>
         <Problems>
-          {data &&
-            data.map((problem, index) => (
+          {problems &&
+            problems.length !== 0 &&
+            problems.map((problem, index) => (
               <ProblemView key={problem.id} problem={problem} index={index} />
             ))}
         </Problems>

@@ -3,7 +3,7 @@ import { createStandardAction, ActionType, getType } from "typesafe-actions";
 //type 정의
 export const GET_DATA = `problem/GET_DATA`;
 
-export const getData = createStandardAction(GET_DATA)<string>();
+export const getData = createStandardAction(GET_DATA)<Array<Object>>();
 
 export type GetData = ActionType<typeof getData>;
 
@@ -29,16 +29,17 @@ interface Problem {
 }
 
 interface State {
-  data: Problem[] | [];
+  problems: Problem[] | [];
 }
 
 const initialState: State = {
-  data: []
+  problems: []
 };
 
 const problem = (state: State = initialState, action: any) => {
   switch (action.type) {
     case getType(getData):
+      return { problems: action.payload };
     default:
       return state;
   }
