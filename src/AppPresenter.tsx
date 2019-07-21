@@ -112,11 +112,13 @@ interface Problem {
 }
 interface IProps {
   problems: Problem[];
-  activeProblems: Problem[];
+  activeProblems: {
+    problems: Problem[];
+    problemId: number;
+  };
 }
 
 const App: React.FC<IProps> = ({ problems, activeProblems }) => {
-  console.log(activeProblems);
   return (
     <Container>
       <Left>
@@ -136,21 +138,27 @@ const App: React.FC<IProps> = ({ problems, activeProblems }) => {
           <RightTopText>문항교체/추가</RightTopText>
         </RightTop>
         <RithtContet>
-          {activeProblems.map((ativeProblem, index) => (
+          {activeProblems.problems.map((ativeProblem, index) => (
             <ActivedProblem
               key={ativeProblem.id}
               ativeProblem={ativeProblem}
               index={index}
             />
           ))}
-          {activeProblems.length === 0 && (
-            <RightInitWrapper>
-              <RightInit>
-                <RightButton>유사문항</RightButton>
-                버튼을 누르면 해당문제와 유사 문항을 볼 수 있습니다.
-              </RightInit>
-            </RightInitWrapper>
-          )}
+          {console.log(activeProblems.problems.length)}
+          {activeProblems.problems.length === 0 &&
+            (activeProblems.problemId !== 0 ? (
+              <RightInitWrapper>
+                <RightInit>해당문제와 유사 문항이 없습니다.</RightInit>
+              </RightInitWrapper>
+            ) : (
+              <RightInitWrapper>
+                <RightInit>
+                  <RightButton>유사문항</RightButton>
+                  버튼을 누르면 해당문제와 유사 문항을 볼 수 있습니다.
+                </RightInit>
+              </RightInitWrapper>
+            ))}
         </RithtContet>
       </Right>
     </Container>

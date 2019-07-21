@@ -40,12 +40,17 @@ const ProblemContainer: React.FC<IProps> = ({ problem, index }) => {
         .json()
         .then((json) => {
           const realated = json.filter(
-            (RawProblem: Problem) => RawProblem.unitCode === problem.unitCode
+            (RawProblem: Problem) =>
+              RawProblem.unitCode === problem.unitCode &&
+              RawProblem.id !== problem.id
           );
           return realated;
         })
         .then((problems) => {
-          dispatch({ type: "activeProblem/GET_DATA", payload: problems });
+          dispatch({
+            type: "activeProblem/GET_DATA",
+            payload: { problems, problemId: problem.id }
+          });
         })
     );
   };

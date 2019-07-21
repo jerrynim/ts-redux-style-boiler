@@ -22,7 +22,7 @@ const App: React.FC = () => {
       {
         <AppPresenter
           problems={problems.problems}
-          activeProblems={activeProblems.problems}
+          activeProblems={activeProblems}
         />
       }
     </>

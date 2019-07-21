@@ -4,16 +4,19 @@ import { createStandardAction, ActionType, getType } from "typesafe-actions";
 export const GET_DATA = `problem/GET_DATA`;
 export const GET_SIMILLAR_TYPES = `problem/GET_SIMILLAR_TYPES`;
 export const DELETE_PROBLEM = `problem/DELETE_PROBLEM`;
+export const ADD_PROBLEM = `problem/ADD_PROBLEM`;
 
 export const getData = createStandardAction(GET_DATA)<Array<Object>>();
 export const getSimillarTypes = createStandardAction(GET_SIMILLAR_TYPES)<
   number
 >();
 export const deleteProblem = createStandardAction(DELETE_PROBLEM)<number>();
+export const addProblem = createStandardAction(ADD_PROBLEM)<number>();
 
 export type GetData = ActionType<typeof getData>;
 export type GetSimillarTypes = ActionType<typeof getSimillarTypes>;
 export type DeleteProblem = ActionType<typeof deleteProblem>;
+export type AddProblem = ActionType<typeof addProblem>;
 
 interface Problem {
   id: number;
@@ -57,6 +60,10 @@ const problem = (state: State = initialState, action: any) => {
       );
       return { problems: result };
     //id를 받아서 state에서 삭제하기
+    case getType(addProblem):
+      const { problemId, ativeProblem } = action.payload;
+      //배열에서 problemId를 찾아 뒤에 ativeProblem을 추가
+      console.log(state, problemId, ativeProblem);
     default:
       return state;
   }

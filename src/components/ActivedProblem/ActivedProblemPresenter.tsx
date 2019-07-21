@@ -93,9 +93,14 @@ interface Problem {
 interface IProps {
   ativeProblem: Problem;
   index: number;
+  addProblem: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 //Problem의 VIew
-const ActiveProblemPresenter: React.FC<IProps> = ({ ativeProblem, index }) => {
+const ActiveProblemPresenter: React.FC<IProps> = ({
+  ativeProblem,
+  index,
+  addProblem
+}) => {
   const {
     problemType,
     problemURL,
@@ -107,8 +112,8 @@ const ActiveProblemPresenter: React.FC<IProps> = ({ ativeProblem, index }) => {
         <ProblemType>{problemType}</ProblemType>
         <ProblemTypeName>{unitName}</ProblemTypeName>
         <ProblemButtons>
-          <ProblemButton>유사문항</ProblemButton>
-          <ProblemButton>삭제</ProblemButton>
+          <ProblemButton onClick={addProblem}>추가</ProblemButton>
+          <ProblemButton>교체</ProblemButton>
         </ProblemButtons>
       </ProblemTop>
       <ProblemBar />

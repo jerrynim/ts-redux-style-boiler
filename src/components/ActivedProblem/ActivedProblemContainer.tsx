@@ -1,5 +1,6 @@
 import React from "react";
 import ActivedProblemPresenter from "./ActivedProblemPresenter";
+import { useSelector, useDispatch } from "react-redux";
 
 interface Problem {
   answerData: string;
@@ -27,6 +28,25 @@ interface IProps {
 }
 
 const ProblemContainer: React.FC<IProps> = ({ ativeProblem, index }) => {
-  return <ActivedProblemPresenter ativeProblem={ativeProblem} index={index} />;
+  const activeProblems = useSelector((state: any) => state.activeProblem);
+  const dispatch = useDispatch();
+
+  const addProblem: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const { problemId } = activeProblems;
+
+    dispatch({
+      type: "problem/ADD_PROBLEM",
+      payload: { problemId, ativeProblem }
+    });
+    //activestate.problemid의 밑에 선택된 problem을 추가하자
+  };
+
+  return (
+    <ActivedProblemPresenter
+      ativeProblem={ativeProblem}
+      index={index}
+      addProblem={addProblem}
+    />
+  );
 };
 export default ProblemContainer;
