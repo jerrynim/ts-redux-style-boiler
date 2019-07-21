@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ProblemView from "./components/Problem";
 import ActivedProblem from "./components/ActivedProblem";
+import { Problem } from "./type";
 const Container = styled.div`
   background-color: #f5f5f5;
   width: 100%;
@@ -90,26 +91,6 @@ const RightInit = styled.div`
   font-weight: 500;
 `;
 
-interface Problem {
-  answerData: string;
-  bookDataId: number;
-  cebuCode: number;
-  correctTimes: number;
-  curriculumNumber: number;
-  hide: number;
-  hwpExist: number;
-  id: number;
-  needCheckLayout: number;
-  problemLevel: number;
-  problemType: string;
-  problemURL: string;
-  scorable: number;
-  source: number;
-  tagTop: null;
-  totalTimes: number;
-  unitCode: number;
-  unitName: string;
-}
 interface IProps {
   problems: Problem[];
   activeProblems: {
@@ -129,7 +110,7 @@ const App: React.FC<IProps> = ({ problems, activeProblems }) => {
           {problems &&
             problems.length !== 0 &&
             problems.map((problem, index) => (
-              <ProblemView key={problem.id} problem={problem} index={index} />
+              <ProblemView key={index} problem={problem} index={index} />
             ))}
         </Problems>
       </Left>

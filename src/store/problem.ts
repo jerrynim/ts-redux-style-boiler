@@ -1,4 +1,5 @@
 import { createStandardAction, ActionType, getType } from "typesafe-actions";
+import { Problem } from "../type";
 
 //type 정의
 const GET_DATA = `problem/GET_DATA`;
@@ -21,27 +22,6 @@ export type GetData = ActionType<typeof getData>;
 export type DeleteProblem = ActionType<typeof deleteProblem>;
 export type AddProblem = ActionType<typeof addProblem>;
 export type RepalceProblem = ActionType<typeof repalceProblem>;
-
-export type Problem = {
-  id: number;
-  unitCode: number;
-  answerData: string;
-  problemLevel: number;
-  problemType: string;
-  problemURL: string;
-  unitName: string;
-  needCheckLayout: number;
-  source: number;
-  hide: number;
-  curriculumNumber: number;
-  cebuCode: number;
-  totalTimes: number;
-  correctTimes: number;
-  hwpExist: number;
-  scorable: number;
-  tagTop: null;
-  bookDataId: number;
-};
 
 interface State {
   problems: Problem[] | [];

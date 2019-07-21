@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Problem } from "../../type";
 const Container = styled.div`
   width: 100%;
   padding: 0px 19px;
@@ -70,26 +71,7 @@ const ProblemNumber = styled.h1`
   color: ${(props) => props.theme.blue};
 `;
 const ProblemImg = styled.img``;
-interface Problem {
-  answerData: string;
-  bookDataId: number;
-  cebuCode: number;
-  correctTimes: number;
-  curriculumNumber: number;
-  hide: number;
-  hwpExist: number;
-  id: number;
-  needCheckLayout: number;
-  problemLevel: number;
-  problemType: string;
-  problemURL: string;
-  scorable: number;
-  source: number;
-  tagTop: null;
-  totalTimes: number;
-  unitCode: number;
-  unitName: string;
-}
+
 interface IProps {
   ativeProblem: Problem;
   index: number;
@@ -98,7 +80,7 @@ interface IProps {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 }
-//Problem의 VIew
+
 const ActiveProblemPresenter: React.FC<IProps> = ({
   ativeProblem,
   index,

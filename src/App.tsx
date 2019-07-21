@@ -6,6 +6,7 @@ const App: React.FC = () => {
   const activeProblems = useSelector((state: any) => state.activeProblem);
   const dispatch = useDispatch();
 
+  //시작시 데이터를 불러와 state에 저장하도록
   useEffect(() => {
     fetch("http://localhost:3001/data").then((res) =>
       res.json().then((json) =>

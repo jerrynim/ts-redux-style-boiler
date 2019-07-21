@@ -1,27 +1,8 @@
 import React from "react";
 import ProblemPresenter from "./ProblemPresenter";
 import { useDispatch } from "react-redux";
+import { Problem } from "../../type";
 
-interface Problem {
-  answerData: string;
-  bookDataId: number;
-  cebuCode: number;
-  correctTimes: number;
-  curriculumNumber: number;
-  hide: number;
-  hwpExist: number;
-  id: number;
-  needCheckLayout: number;
-  problemLevel: number;
-  problemType: string;
-  problemURL: string;
-  scorable: number;
-  source: number;
-  tagTop: null;
-  totalTimes: number;
-  unitCode: number;
-  unitName: string;
-}
 interface IProps {
   problem: Problem;
   index: number;
@@ -30,11 +11,14 @@ interface IProps {
 const ProblemContainer: React.FC<IProps> = ({ problem, index }) => {
   const dispatch = useDispatch();
 
+  //Problem을 삭제하늖 함수
   const deleteProblem: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch({ type: "problem/DELETE_PROBLEM", payload: problem.id });
   };
 
+  //Problem의 연관 문제를 불러오는 함수
   const onClickSimilar: React.MouseEventHandler<HTMLButtonElement> = () => {
+    //자신을 제외한 동일한 unitCode를 가진 Problem을 가져온다
     fetch("http://localhost:3001/data").then((res) =>
       res
         .json()

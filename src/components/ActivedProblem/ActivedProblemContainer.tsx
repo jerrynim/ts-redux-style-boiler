@@ -1,54 +1,35 @@
 import React from "react";
 import ActivedProblemPresenter from "./ActivedProblemPresenter";
 import { useSelector, useDispatch } from "react-redux";
+import { Problem } from "../../type";
 
-interface Problem {
-  answerData: string;
-  bookDataId: number;
-  cebuCode: number;
-  correctTimes: number;
-  curriculumNumber: number;
-  hide: number;
-  hwpExist: number;
-  id: number;
-  needCheckLayout: number;
-  problemLevel: number;
-  problemType: string;
-  problemURL: string;
-  scorable: number;
-  source: number;
-  tagTop: null;
-  totalTimes: number;
-  unitCode: number;
-  unitName: string;
-}
 interface IProps {
   ativeProblem: Problem;
-  index: number;
+  index: number; //번호를 위한 값
 }
 
 const ProblemContainer: React.FC<IProps> = ({ ativeProblem, index }) => {
   const activeProblems = useSelector((state: any) => state.activeProblem);
   const dispatch = useDispatch();
 
+  //Problem을 추가하는 함수
   const addProblem: React.MouseEventHandler<HTMLButtonElement> = () => {
-    const { problemId } = activeProblems;
+    const { problemId } = activeProblems; //현재 엑티브되어있는 problem의 ID를 받는다.
 
     dispatch({
       type: "problem/ADD_PROBLEM",
       payload: { problemId, ativeProblem }
     });
-    //activestate.problemid의 밑에 선택된 problem을 추가하자
   };
 
+  //Problem을 교체하는 함수
   const repalceProblem: React.MouseEventHandler<HTMLButtonElement> = () => {
-    const { problemId } = activeProblems;
+    const { problemId } = activeProblems; //현재 엑티브되어있는 problem의 ID를 받는다.
 
     dispatch({
       type: "problem/REPLACE_PROBLEM",
       payload: { problemId, ativeProblem }
     });
-    //activestate.problemid의 밑에 선택된 problem을 추가하자
   };
 
   return (
