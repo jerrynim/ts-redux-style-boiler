@@ -2,15 +2,20 @@ import React from "react";
 import styled from "styled-components";
 const Container = styled.div`
   background-color: #f5f5f5;
-  height: 100%;
+  width: 100%;
+  height: -webkit-fill-available;
+  display: flex;
 `;
 const Left = styled.div`
-  width: 646px;
+  flex: 1;
   margin-right: 8px;
+  height: initial;
+  position: relative;
+  position: relative;
 `;
 const Right = styled.div`
-  width: 646px;
-  background-color: white;
+  flex: 1;
+  position: relative;
 `;
 const Title = styled.div`
   width: 100%;
@@ -26,12 +31,20 @@ const TitleText = styled.h2`
   font-family: NanumSquareOTFB;
   font-size: 14px;
 `;
+const Problems = styled.div`
+  height: calc(100% - 48px);
+  display: block;
+  flex-direction: column;
+  overflow: scroll;
+`;
 const Problem = styled.div`
   width: 100%;
   padding: 0px 19px;
   margin: 0;
   margin-bottom: 8px;
   background-color: white;
+  overflow: scroll;
+  height: fit-content;
 `;
 const ProblemTop = styled.div`
   position: relative;
@@ -64,8 +77,13 @@ const ProblemButton = styled.button`
   margin-right: 8px;
   padding: 15px;
   line-height: 0;
+  font-weight: bold;
   :last-child {
     margin: 0;
+  }
+  :hover {
+    background-color: ${(props) => props.theme.blue};
+    color: white;
   }
 `;
 const ProblemBar = styled.div`
@@ -74,13 +92,14 @@ const ProblemBar = styled.div`
   border: solid 1px #f5f5f5;
 `;
 const ProblemContent = styled.div`
-  padding-top: 15px;
+  padding: 15px 0px;
   display: flex;
 `;
 const ProblemNumber = styled.h1`
   font-family: Roboto;
   width: 82px;
   text-align: center;
+  font-weight: bold;
   color: ${(props) => props.theme.blue};
 `;
 const ProblemImg = styled.div`
@@ -89,6 +108,49 @@ const ProblemImg = styled.div`
   height: 210px;
   background-size: cover;
 `;
+
+const RightTop = styled.div`
+  width: 100%;
+  height: 48px;
+  margin-bottom: 8px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const RightTopText = styled.div`
+  font-family: SamsungKorean_v2.0;
+  font-size: 14px;
+  font-weight: bold;
+  color: ${(props) => props.theme.dark};
+`;
+const RightButton = styled.button`
+  font-size: 13px;
+  margin-right: 8px;
+  border-radius: 2px;
+  border: solid 1px #e8e8e8;
+  background-color: #ffffff;
+  color: ${(props) => props.theme.buttonBlue};
+  padding: 5px;
+  font-weight: bold;
+`;
+const RithtContet = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+`;
+const RightInit = styled.div`
+  width: 230px;
+  height: 56px;
+  text-align: center;
+  color: ${(props) => props.theme.brownGrey};
+  font-family: NotoSansCJKkr;
+  font-size: 14px;
+  font-weight: 500;
+`;
 const App: React.FC = () => {
   return (
     <Container>
@@ -96,23 +158,65 @@ const App: React.FC = () => {
         <Title>
           <TitleText>학습지 상세 편집</TitleText>
         </Title>
-        <Problem>
-          <ProblemTop>
-            <ProblemType>객관식</ProblemType>
-            <ProblemTypeName>유형명이 보여지는 영역입니다.</ProblemTypeName>
-            <ProblemButtons>
-              <ProblemButton>유사문항</ProblemButton>
-              <ProblemButton>삭제</ProblemButton>
-            </ProblemButtons>
-          </ProblemTop>
-          <ProblemBar />
-          <ProblemContent>
-            <ProblemNumber>1</ProblemNumber>
-            <ProblemImg />
-          </ProblemContent>
-        </Problem>
+        <Problems>
+          <Problem>
+            <ProblemTop>
+              <ProblemType>객관식</ProblemType>
+              <ProblemTypeName>유형명이 보여지는 영역입니다.</ProblemTypeName>
+              <ProblemButtons>
+                <ProblemButton>유사문항</ProblemButton>
+                <ProblemButton>삭제</ProblemButton>
+              </ProblemButtons>
+            </ProblemTop>
+            <ProblemBar />
+            <ProblemContent>
+              <ProblemNumber>1</ProblemNumber>
+              <ProblemImg />
+            </ProblemContent>
+          </Problem>{" "}
+          <Problem>
+            <ProblemTop>
+              <ProblemType>객관식</ProblemType>
+              <ProblemTypeName>유형명이 보여지는 영역입니다.</ProblemTypeName>
+              <ProblemButtons>
+                <ProblemButton>유사문항</ProblemButton>
+                <ProblemButton>삭제</ProblemButton>
+              </ProblemButtons>
+            </ProblemTop>
+            <ProblemBar />
+            <ProblemContent>
+              <ProblemNumber>1</ProblemNumber>
+              <ProblemImg />
+            </ProblemContent>
+          </Problem>
+          <Problem>
+            <ProblemTop>
+              <ProblemType>객관식</ProblemType>
+              <ProblemTypeName>유형명이 보여지는 영역입니다.</ProblemTypeName>
+              <ProblemButtons>
+                <ProblemButton>유사문항</ProblemButton>
+                <ProblemButton>삭제</ProblemButton>
+              </ProblemButtons>
+            </ProblemTop>
+            <ProblemBar />
+            <ProblemContent>
+              <ProblemNumber>1</ProblemNumber>
+              <ProblemImg />
+            </ProblemContent>
+          </Problem>
+        </Problems>
       </Left>
-      <Right />
+      <Right>
+        <RightTop>
+          <RightTopText>문항교체/추가</RightTopText>
+        </RightTop>
+        <RithtContet>
+          <RightInit>
+            <RightButton>유사문항</RightButton>
+            버튼을 누르면 해당문제와 유사 문항을 볼 수 있습니다.
+          </RightInit>
+        </RithtContet>
+      </Right>
     </Container>
   );
 };
