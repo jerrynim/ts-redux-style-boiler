@@ -1,10 +1,11 @@
 import * as styledComponents from "styled-components";
 
 interface IThemeInterface {
-  black: string;
-  blueGray: string;
-  softGray: string;
+  buttonBlue: string;
   blue: string;
+  brownGrey: string;
+  dark: string;
+  grey: string;
 }
 
 const {

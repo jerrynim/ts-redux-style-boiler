@@ -1,6 +1,7 @@
 export default {
-  black: "#333333",
-  blueGray: "#F1F5FB",
-  softGray: "#777777",
-  blue: "#2F80ED"
+  buttonBlue: "#00c7f3",
+  blue: "#02c7f2",
+  brownGrey: "#9f9f9f",
+  dark: "#4c4c4c",
+  grey: "#f5f5f5"
 };

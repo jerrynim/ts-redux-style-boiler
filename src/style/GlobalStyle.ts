@@ -11,10 +11,7 @@ const GlobalStyles = createGlobalStyle`
         outline:0;
         cursor:pointer;
         border: 0;
-        background-color:white;
     }
-    
-    
 `;
 
 export default GlobalStyles;
