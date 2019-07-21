@@ -41,11 +41,22 @@ const ProblemContainer: React.FC<IProps> = ({ ativeProblem, index }) => {
     //activestate.problemid의 밑에 선택된 problem을 추가하자
   };
 
+  const repalceProblem: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const { problemId } = activeProblems;
+
+    dispatch({
+      type: "problem/REPLACE_PROBLEM",
+      payload: { problemId, ativeProblem }
+    });
+    //activestate.problemid의 밑에 선택된 problem을 추가하자
+  };
+
   return (
     <ActivedProblemPresenter
       ativeProblem={ativeProblem}
       index={index}
       addProblem={addProblem}
+      repalceProblem={repalceProblem}
     />
   );
 };

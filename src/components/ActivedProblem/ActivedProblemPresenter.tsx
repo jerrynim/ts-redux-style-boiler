@@ -94,12 +94,16 @@ interface IProps {
   ativeProblem: Problem;
   index: number;
   addProblem: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  repalceProblem: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 //Problem의 VIew
 const ActiveProblemPresenter: React.FC<IProps> = ({
   ativeProblem,
   index,
-  addProblem
+  addProblem,
+  repalceProblem
 }) => {
   const {
     problemType,
@@ -113,7 +117,7 @@ const ActiveProblemPresenter: React.FC<IProps> = ({
         <ProblemTypeName>{unitName}</ProblemTypeName>
         <ProblemButtons>
           <ProblemButton onClick={addProblem}>추가</ProblemButton>
-          <ProblemButton>교체</ProblemButton>
+          <ProblemButton onClick={repalceProblem}>교체</ProblemButton>
         </ProblemButtons>
       </ProblemTop>
       <ProblemBar />
