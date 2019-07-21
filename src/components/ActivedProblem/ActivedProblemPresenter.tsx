@@ -91,35 +91,24 @@ interface Problem {
   unitName: string;
 }
 interface IProps {
-  problem: Problem;
+  ativeProblem: Problem;
   index: number;
-  deleteProblem: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-  onClickSimilar: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
 }
 //Problem의 VIew
-const ProblemPresenter: React.FC<IProps> = ({
-  problem,
-  index,
-  deleteProblem,
-  onClickSimilar
-}) => {
+const ActiveProblemPresenter: React.FC<IProps> = ({ ativeProblem, index }) => {
   const {
     problemType,
     problemURL,
     unitName = "유형명이 보여지는 영역입니다."
-  } = problem;
+  } = ativeProblem;
   return (
     <Container>
       <ProblemTop>
         <ProblemType>{problemType}</ProblemType>
         <ProblemTypeName>{unitName}</ProblemTypeName>
         <ProblemButtons>
-          <ProblemButton onClick={onClickSimilar}>유사문항</ProblemButton>
-          <ProblemButton onClick={deleteProblem}>삭제</ProblemButton>
+          <ProblemButton>유사문항</ProblemButton>
+          <ProblemButton>삭제</ProblemButton>
         </ProblemButtons>
       </ProblemTop>
       <ProblemBar />
@@ -131,4 +120,4 @@ const ProblemPresenter: React.FC<IProps> = ({
   );
 };
 
-export default ProblemPresenter;
+export default ActiveProblemPresenter;

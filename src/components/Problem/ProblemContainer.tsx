@@ -34,11 +34,28 @@ const ProblemContainer: React.FC<IProps> = ({ problem, index }) => {
     dispatch({ type: "problem/DELETE_PROBLEM", payload: problem.id });
   };
 
+  const onClickSimilar: React.MouseEventHandler<HTMLButtonElement> = () => {
+    fetch("http://localhost:3001/data").then((res) =>
+      res
+        .json()
+        .then((json) => {
+          const realated = json.filter(
+            (RawProblem: Problem) => RawProblem.unitCode === problem.unitCode
+          );
+          return realated;
+        })
+        .then((problems) => {
+          dispatch({ type: "activeProblem/GET_DATA", payload: problems });
+        })
+    );
+  };
+
   return (
     <ProblemPresenter
       problem={problem}
       index={index}
       deleteProblem={deleteProblem}
+      onClickSimilar={onClickSimilar}
     />
   );
 };

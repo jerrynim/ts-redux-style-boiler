@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProblemView from "./components/Problem";
+import ActivedProblem from "./components/ActivedProblem";
 const Container = styled.div`
   background-color: #f5f5f5;
   width: 100%;
@@ -65,12 +66,19 @@ const RightButton = styled.button`
   font-weight: bold;
 `;
 const RithtContet = styled.div`
+  width: 100%;
+  height: calc(100% - 56px);
+  display: flex;
+  flex-direction: column;
+`;
+
+const RightInitWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: calc(100% - 56px);
-  background-color: white;
 `;
 const RightInit = styled.div`
   width: 230px;
@@ -104,11 +112,11 @@ interface Problem {
 }
 interface IProps {
   problems: Problem[];
-  active: any;
-  setActive?: React.Dispatch<any>;
+  activeProblems: Problem[];
 }
 
-const App: React.FC<IProps> = ({ problems, active }) => {
+const App: React.FC<IProps> = ({ problems, activeProblems }) => {
+  console.log(activeProblems);
   return (
     <Container>
       <Left>
@@ -128,14 +136,20 @@ const App: React.FC<IProps> = ({ problems, active }) => {
           <RightTopText>문항교체/추가</RightTopText>
         </RightTop>
         <RithtContet>
-          {
-            //active 배열 안에 active된 problem을 넣어서 map을 통해 보여주도록하자
-          }
-          {active === undefined && (
-            <RightInit>
-              <RightButton>유사문항</RightButton>
-              버튼을 누르면 해당문제와 유사 문항을 볼 수 있습니다.
-            </RightInit>
+          {activeProblems.map((ativeProblem, index) => (
+            <ActivedProblem
+              key={ativeProblem.id}
+              ativeProblem={ativeProblem}
+              index={index}
+            />
+          ))}
+          {activeProblems.length === 0 && (
+            <RightInitWrapper>
+              <RightInit>
+                <RightButton>유사문항</RightButton>
+                버튼을 누르면 해당문제와 유사 문항을 볼 수 있습니다.
+              </RightInit>
+            </RightInitWrapper>
           )}
         </RithtContet>
       </Right>
