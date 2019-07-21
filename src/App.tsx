@@ -5,6 +5,7 @@ const App: React.FC = () => {
   const problems = useSelector((state: any) => state.problem);
   const dispatch = useDispatch();
   const [active, setActive] = useState();
+
   useEffect(() => {
     fetch("http://localhost:3001/data").then((res) =>
       res.json().then((json) =>
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       )
     );
   }, [dispatch]);
+
   return (
     <>
       {
