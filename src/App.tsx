@@ -1,22 +1,27 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import AppPresenter from "./AppPresenter";
 const App: React.FC = () => {
-  const problem = useSelector((state: any) => state.problem);
-  console.log(problem);
-  const dispatch = useDispatch();
-
+  // const problem = useSelector((state: any) => state.problem);
+  // const dispatch = useDispatch();
+  const [data, setData] = useState();
+  const [active, setActive] = useState();
   useEffect(() => {
-    dispatch({
-      type: "problem/GET_DATA",
-      payload: "http://localhost:3001/data"
-    });
+    fetch("http://localhost:3001/data").then((res) =>
+      res.json().then((json) => setData(json))
+    );
+    // dispatch({
+    //   type: "problem/GET_DATA",
+    //   payload: "http://localhost:3001/data"
+    // });
   }, []);
 
-  // const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  //   setText(e.target.value);
-  // };
-  return <AppPresenter />;
+  return (
+    <>
+      {data && (
+        <AppPresenter data={data} active={active} setActive={setActive} />
+      )}
+    </>
+  );
 };
 
 export default App;

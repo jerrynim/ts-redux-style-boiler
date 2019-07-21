@@ -39,8 +39,6 @@ const initialState: State = {
 const problem = (state: State = initialState, action: any) => {
   switch (action.type) {
     case getType(getData):
-      const url = action.payload;
-      console.log(url);
     default:
       return state;
   }
